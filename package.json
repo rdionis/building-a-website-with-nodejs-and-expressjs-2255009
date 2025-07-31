@@ -1,0 +1,23 @@
+{
+  "name": "building-website-nodejs-expressjs",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "This is the repository for the LinkedIn Learning course Building a Website with Node.js and Express.js. The full course is available from [LinkedIn Learning][https://www.linkedin.com/learning/building-a-website-with-node-js-and-express-js-3].",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdionis/building-a-website-with-nodejs-and-expressjs-2255009.git"
+  },
+  "author": "Raquel Dionísio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rdionis/building-a-website-with-nodejs-and-expressjs-2255009/issues"
+  },
+  "homepage": "https://github.com/rdionis/building-a-website-with-nodejs-and-expressjs-2255009#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
