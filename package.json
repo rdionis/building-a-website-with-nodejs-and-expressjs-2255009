@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/rdionis/building-a-website-with-nodejs-and-expressjs-2255009#readme",
   "dependencies": {
+    "cookie-session": "^2.1.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0"
   },
