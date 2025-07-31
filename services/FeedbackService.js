@@ -1,5 +1,5 @@
-const fs = require('fs');
-const util = require('util');
+import fs from "fs";
+import util from "util";
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -40,10 +40,10 @@ class FeedbackService {
    * Fetches feedback data from the JSON file provided to the constructor
    */
   async getData() {
-    const data = await readFile(this.datafile, 'utf8');
+    const data = await readFile(this.datafile, "utf8");
     if (!data) return [];
     return JSON.parse(data);
   }
 }
 
-module.exports = FeedbackService;
+export default FeedbackService;
