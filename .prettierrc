@@ -1,0 +1,6 @@
+{
+  "parser": "html",
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "singleQuote": false
+}
