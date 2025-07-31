@@ -19,5 +19,8 @@
   "homepage": "https://github.com/rdionis/building-a-website-with-nodejs-and-expressjs-2255009#readme",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.32.0"
   }
 }
