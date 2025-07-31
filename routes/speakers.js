@@ -12,10 +12,13 @@ export default (params) => {
 
   router.get("/", async (request, response) => {
     const speakers = await speakersService.getList();
+    const artworks = await speakersService.getAllArtwork();
+
     response.render("layout", {
       pageTitle: "Speakers",
       template: "speakers",
       speakers,
+      artworks,
     });
   });
 
@@ -24,8 +27,6 @@ export default (params) => {
     const artworks = await speakersService.getArtworkForSpeaker(
       request.params.shortname
     );
-    //console.log("This is the current speaker", speaker);
-    console.log("This is the artwork:", artworks);
     // return response.send(`Detail page of ${request.params.shortname}`);
     response.render("layout", {
       pageTitle: "Speaker's Detail",
