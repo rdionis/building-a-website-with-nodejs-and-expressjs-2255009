@@ -11,6 +11,8 @@ export default (params) => {
     // request.session.visitCount = 0;  }
     // request.session.visitCount += 1;
     // console.log(`Number of visits: ${request.session.visitCount}`);
+    // return next(new Error("Some error"));
+
     try {
       const artworks = await speakersService.getAllArtwork();
       const topSpeakers = await speakersService.getList();
