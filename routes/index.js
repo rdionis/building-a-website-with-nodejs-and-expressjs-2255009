@@ -5,14 +5,23 @@ import feedbackRoute from "./feedback.js";
 const router = express.Router();
 
 export default (params) => {
-  router.get("/", (request, response) => {
+  const { speakersService } = params;
+
+  router.get("/", async (request, response) => {
     // if (!request.session.visitCount) {
     //   request.session.visitCount = 0;
     // }
     // request.session.visitCount += 1;
     // console.log(`Number of visits: ${request.session.visitCount}`);
 
-    response.render("layout", { pageTitle: "Welcome", template: "index" });
+    const topSpeakers = await speakersService.getList();
+    // console.log(topSpeakers);
+
+    response.render("layout", {
+      pageTitle: "Welcome",
+      template: "index",
+      topSpeakers,
+    });
   });
 
   router.use("/speakers", speakersRoute(params));

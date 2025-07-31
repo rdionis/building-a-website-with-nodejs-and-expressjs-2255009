@@ -5,9 +5,18 @@ const router = express.Router();
 export default (params) => {
   const { speakersService } = params;
 
+  // router.get("/", async (request, response) => {
+  //   const speakers = await speakersService.getList();
+  //   return response.json(speakers);
+  // });
+
   router.get("/", async (request, response) => {
     const speakers = await speakersService.getList();
-    return response.json(speakers);
+    response.render("layout", {
+      pageTitle: "Speakers",
+      template: "speakers",
+      speakers,
+    });
   });
 
   router.get("/:shortname", (request, response) => {
