@@ -6,7 +6,13 @@ const router = express.Router();
 
 export default (params) => {
   router.get("/", (request, response) => {
-    response.render("pages/index", { pageTitle: "Welcome" });
+    // if (!request.session.visitCount) {
+    //   request.session.visitCount = 0;
+    // }
+    // request.session.visitCount += 1;
+    // console.log(`Number of visits: ${request.session.visitCount}`);
+
+    response.render("layout", { pageTitle: "Welcome", template: "index" });
   });
 
   router.use("/speakers", speakersRoute(params));
