@@ -2,9 +2,11 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import cookieSession from "cookie-session";
-import routes from "./routes/index.js";
+import createError from "http-errors";
 import FeedbackService from "./services/FeedbackService.js";
 import SpeakersService from "./services/SpeakerService.js";
+
+import routes from "./routes/index.js";
 
 const app = express();
 
@@ -30,6 +32,13 @@ app.set("views", path.join(__dirname, "./views"));
 
 app.use(express.static(path.join(__dirname, "./static"))); //  express.static is middleware
 
+// app.get("/throw", (request, response, next) => {
+//   setTimeout(() => {
+//     next(new Error("Throwing new error!!!"));
+//     //throw new Error("Throwing new error!!!");
+//   }, 500);
+// });
+
 // app.get("/", (request, response) => {
 //   // response.send("Hello, Express! :)");
 //   // response.sendFile(path.join(__dirname, "./static/index.html"));
@@ -46,10 +55,9 @@ app.use(async (request, response, next) => {
   try {
     const names = await speakersService.getNames();
     response.locals.speakerNames = names;
-    // console.log(response.locals);
-    return next();
+    next();
   } catch (err) {
-    return next(err);
+    next(err);
   }
 });
 
@@ -60,6 +68,20 @@ app.use(
     speakersService,
   })
 );
+
+app.use((request, response, next) => {
+  next(createError(404, "File not found"));
+});
+
+// error handling middleware // takes four arguments
+app.use((err, request, response, next) => {
+  response.locals.message = err.message;
+  console.error(err);
+  const status = err.status || 500;
+  response.locals.status = status;
+  response.status(status);
+  response.render("error");
+});
 
 app.listen(port, () => {
   console.log(`Express server listening on port ${port}!`);

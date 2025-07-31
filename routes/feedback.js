@@ -6,8 +6,12 @@ export default (params) => {
   const { feedbackService } = params;
 
   router.get("/", async (request, response) => {
-    const feedback = await feedbackService.getList();
-    return response.send(feedback);
+    try {
+      const feedback = await feedbackService.getList();
+      return response.send(feedback);
+    } catch (err) {
+      next(err);
+    }
   });
 
   router.post("/", (request, response) => {
