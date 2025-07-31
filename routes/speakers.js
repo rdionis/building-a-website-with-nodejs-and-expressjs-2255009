@@ -21,12 +21,17 @@ export default (params) => {
 
   router.get("/:shortname", async (request, response) => {
     const speaker = await speakersService.getSpeaker(request.params.shortname);
-    console.log(speaker);
+    const artworks = await speakersService.getArtworkForSpeaker(
+      request.params.shortname
+    );
+    //console.log("This is the current speaker", speaker);
+    console.log("This is the artwork:", artworks);
     // return response.send(`Detail page of ${request.params.shortname}`);
     response.render("layout", {
       pageTitle: "Speaker's Detail",
       template: "speakers-detail",
       speaker,
+      artworks,
     });
   });
 
