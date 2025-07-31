@@ -19,8 +19,15 @@ export default (params) => {
     });
   });
 
-  router.get("/:shortname", (request, response) => {
-    return response.send(`Detail page of ${request.params.shortname}`);
+  router.get("/:shortname", async (request, response) => {
+    const speaker = await speakersService.getSpeaker(request.params.shortname);
+    console.log(speaker);
+    // return response.send(`Detail page of ${request.params.shortname}`);
+    response.render("layout", {
+      pageTitle: "Speaker's Detail",
+      template: "speakers-detail",
+      speaker,
+    });
   });
 
   router.get("/", (request, response) => {
