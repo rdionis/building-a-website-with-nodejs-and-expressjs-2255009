@@ -1,5 +1,7 @@
 import express from "express";
 
+import { check, validationResult } from "express-validator";
+
 const router = express.Router();
 
 export default (params) => {
@@ -19,6 +21,7 @@ export default (params) => {
   });
 
   router.post("/", (request, response) => {
+    console.log(request.body);
     return response.send("Feedback form posted.");
   });
 

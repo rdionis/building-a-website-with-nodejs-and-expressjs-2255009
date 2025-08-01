@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieSession from "cookie-session";
 import createError from "http-errors";
+import bodyParser from "body-parser";
 import FeedbackService from "./services/FeedbackService.js";
 import SpeakersService from "./services/SpeakerService.js";
 
@@ -26,6 +27,8 @@ app.use(
     keys: ["gHsdkfjwki", "aklfjakfakhjf"],
   })
 );
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
