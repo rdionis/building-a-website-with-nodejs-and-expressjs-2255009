@@ -87,6 +87,11 @@ export default params => {
       }
       const { name, email, title, message } = request.body;
       await feedbackService.addEntry(name, email, title, message);
+      const feedback = await feedbackService.getList();
+      return response.json({
+        feedback,
+        successMessage: "Thank you for your feedback! YUHU",
+      });
     } catch (error) {
       next(error);
     }
